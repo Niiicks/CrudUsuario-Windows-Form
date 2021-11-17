@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -10,8 +11,12 @@ namespace CrudUsuario.Business
     {
         private MySqlConnection conexao;
         private string dataSource = "datasource=localhost;username=root;password=Nick@slash1;database=db_agenda";
+        private ArrayList lista = new ArrayList();
+        public ConexaoBD()
+        {
+        }
 
-        public ListView listarContatos()
+        public ArrayList listarContatos()
         {
             conexao = new MySqlConnection(dataSource);
             conexao.Open();
@@ -21,7 +26,6 @@ namespace CrudUsuario.Business
             cmd.CommandText = "SELECT * FROM contatos ORDER BY id DESC ";
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            ListView lista = new ListView(); 
             while (reader.Read())
             {
                 String[] row =
@@ -32,8 +36,9 @@ namespace CrudUsuario.Business
                     reader.GetString(3)
                 };
 
-                lista.Items.Add(new ListViewItem(row));    
+                lista.Add(row);    
             }
+            conexao.Close();
             return lista;
         }
 

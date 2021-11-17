@@ -6,9 +6,17 @@ namespace CrudUsuario.Model
 {
     class Contato
     {
+        private int id;
         private string nome;
         private string email;
         private string telefone;
+
+        public Contato(string nome, string email, string telefone)
+        {
+            this.nome = nome;
+            this.email = email;
+            this.telefone = telefone;
+        }
 
         public string getNome()
         {
@@ -25,6 +33,11 @@ namespace CrudUsuario.Model
             return this.telefone;
         }
 
+        public int getId()
+        {
+            return this.id;
+        }
+
         public void setNome(string nome)
         {
             this.nome = nome;
@@ -38,6 +51,11 @@ namespace CrudUsuario.Model
         public void setTelefone(string telefone)
         {
             this.telefone = telefone;
+        }
+
+        public void setId(int id)
+        {
+            this.id = id;
         }
     }
 
